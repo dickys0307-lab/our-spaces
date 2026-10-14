@@ -1,26 +1,119 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-canvas: #f6f6f3;
+  --color-ink: #1b1b19;
+  --color-muted: #73736c;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-butter-50: #fbfaee;
+  --color-butter-100: #f6f2d3;
+  --color-butter-200: #ece4a9;
+  --color-butter-300: #ddd07a;
+
+  --color-sage-50: #f3f6e9;
+  --color-sage-100: #e8eed1;
+  --color-sage-200: #d6e0b1;
+  --color-sage-300: #bacc84;
+
+  --color-peri-50: #eff1fc;
+  --color-peri-100: #e1e7fb;
+  --color-peri-200: #c9d3f6;
+  --color-peri-300: #a9b9ed;
+  --color-peri-400: #8b9ee4;
+  --color-peri-500: #7089db;
+
+  --color-apricot-50: #fdf4ea;
+  --color-apricot-100: #fbe6cf;
+  --color-apricot-200: #f6cfa6;
+  --color-apricot-300: #eeb27a;
+  --color-apricot-400: #ec9450;
+  --color-apricot-500: #dd7f36;
+
+  --color-cocoa-900: #2b1d12;
+
+  --color-blush-50: #fdf1f5;
+  --color-blush-100: #fbdfe9;
+  --color-blush-200: #f6c3d6;
+  --color-blush-300: #efa0bd;
+  --color-blush-400: #e57aa5;
+  --color-blush-500: #d45c8b;
+
+  --color-lime-300: #dbe98a;
+  --color-lime-400: #c3dc55;
+
+  --color-plum-900: #2a1a22;
+
+  --color-leaf-400: #8fcc7e;
+  --color-leaf-500: #6fbb5b;
+
+  --shadow-soft: 0 12px 34px -18px rgba(24, 24, 20, 0.35);
+  --shadow-note: 0 10px 24px -14px rgba(24, 24, 20, 0.4);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+[role="button"] {
+  touch-action: manipulation;
+}
+
+/* Hide scrollbars on horizontal swipe rails while keeping momentum scroll */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Smooth momentum scrolling for touch swipe rails */
+@utility touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* subtle paper grain / dot texture for the scrapbook feel */
+.scrapbook-bg {
+  background-image: radial-gradient(rgba(27, 27, 25, 0.045) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s ease-out both;
 }
